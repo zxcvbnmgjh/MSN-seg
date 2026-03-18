@@ -1,0 +1,1 @@
+from .FusionSegNet import FusionSegNet
