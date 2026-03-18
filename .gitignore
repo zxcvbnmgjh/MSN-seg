@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Anaconda
+anaconda3/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Machine Learning / Deep Learning
+nnU-net/
+U-Mumba-main/
+
+# Datasets (通常不需要版本控制)
+MSN-TCSeg_dataset/1-10-new-draw/new_image/
+MSN-TCSeg_dataset/1-10-new-draw/new_label/
+MSN-TCSeg_dataset/1-10-new-draw/nrrd_mask/
+MSN-TCSeg_dataset/1-10-new-draw/png_mask/
+MSN-TCSeg_dataset/split/1-images-after-tuomin/
+MSN-TCSeg_dataset/split/2-images-before-tuomin/
+MSN-TCSeg_dataset/split/3-masks/
+MSN-TCSeg_dataset/split/4-label/
+
+# Logs
+*.log
+train_noohup.log
+
+# Temp files
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Project specific (根据需要调整)
+# SN+project/
+# new_models_doing/
+# paper_prepare/
+# Ultrasound_examination/
+
+Anaconda3-2021.05-Linux-x86_64.sh
