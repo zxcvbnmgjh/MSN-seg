@@ -61,8 +61,15 @@ Thumbs.db
 
 # Project specific (根据需要调整)
 # SN+project/
+
 # new_models_doing/
+
 # paper_prepare/
+
 # Ultrasound_examination/
 
 Anaconda3-2021.05-Linux-x86_64.sh
+
+/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/0_midbrain_data/Test(512*512)groundtruth
+
+/data2/gaojiahao/SN+project 
