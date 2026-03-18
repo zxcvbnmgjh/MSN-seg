@@ -1,12 +1,11 @@
-# Python
+# ===========================
+# Python artifacts
+# ===========================
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-venv/
-ENV/
 build/
 develop-eggs/
 dist/
@@ -23,53 +22,206 @@ wheels/
 .installed.cfg
 *.egg
 
+# ===========================
 # Anaconda
+# ===========================
 anaconda3/
+Anaconda3-*.sh
 
+# ===========================
 # IDE
+# ===========================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
+# ===========================
 # Jupyter Notebook
+# ===========================
 .ipynb_checkpoints/
 
-# Machine Learning / Deep Learning
-nnU-net/
-U-Mumba-main/
-
-# Datasets (通常不需要版本控制)
-MSN-TCSeg_dataset/1-10-new-draw/new_image/
-MSN-TCSeg_dataset/1-10-new-draw/new_label/
-MSN-TCSeg_dataset/1-10-new-draw/nrrd_mask/
-MSN-TCSeg_dataset/1-10-new-draw/png_mask/
-MSN-TCSeg_dataset/split/1-images-after-tuomin/
-MSN-TCSeg_dataset/split/2-images-before-tuomin/
-MSN-TCSeg_dataset/split/3-masks/
-MSN-TCSeg_dataset/split/4-label/
-
-# Logs
+# ===========================
+# Logs and Temp files
+# ===========================
 *.log
-train_noohup.log
-
-# Temp files
 *.tmp
 .DS_Store
 Thumbs.db
+*.pta
 
-# Project specific (根据需要调整)
-# SN+project/
+# ===========================
+# Data files - Image formats (IGNORE THESE)
+# ===========================
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.webp
 
-# new_models_doing/
+# ===========================
+# Data files - Medical image formats
+# ===========================
+*.nii
+*.nii.gz
+*.nrrd
+*.mha
+*.mhd
+*.raw
+*.vtk
+*.dcm
+*.dicom
 
-# paper_prepare/
+# ===========================
+# Data files - ML/Numeric formats
+# ===========================
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.pickle
+*.pkl
 
-# Ultrasound_examination/
+# ===========================
+# Model weights
+# ===========================
+*.pt
+*.pth
+*.pth.tar
+*.ckpt
+*.onnx
+*.pb
+*.tflite
+*.bin
+*.safetensors
 
-Anaconda3-2021.05-Linux-x86_64.sh
+# PDF files (papers, documents - data not code)
+*.pdf
 
-/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/0_midbrain_data/Test(512*512)groundtruth
+# ===========================
+# Specific data directories (COMPLETELY IGNORE)
+# ===========================
+MSN-TCSeg_dataset/
+nnU-net/
+U-Mamba-main/
 
-/data2/gaojiahao/SN+project 
+# Nested git repositories (should be managed as submodules if needed)
+new_models_doing/FusionSegNet/
+
+# Data subdirectories - ignore all contents
+**/raw_data/**
+**/preprocess_data/**
+**/processed_data/**
+**/work_dir/**
+**/checkpoints/**
+**/weights/**
+**/results/**
+**/Results/**
+**/data/Synapse/**
+**/data/midbrain/**
+**/data/substantia-nigra/**
+**/ata2/**
+**/TCSdatatset/**
+**/medvit_cls_exp/**
+**/comparisons/**
+**/extensions/**
+
+# Training outputs and indices (data, not code)
+**/5fold_save_result/**
+**/fold_indices/**
+**/train_metrics.txt
+**/predict_results/**
+**/predict_results_*/**
+**/logs/**
+**/runs/**
+**/experiments/**
+**/weights_results/**
+**/sample_results/**
+
+# Result/metrics files (data, not code)
+**/results*.txt
+**/results*.csv
+**/metrics*.txt
+**/metrics*.csv
+**/log.txt
+**/*_metrics.txt
+**/consistency_analysis_report/**
+**/high_dice_files.txt
+**/low_dice_files.txt
+**/metrics_report.txt
+
+# CSV files (usually data/results)
+*.csv
+
+# Video and multimedia (data)
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Excel/Spreadsheet files (data)
+*.xlsx
+*.xls
+
+# ===========================
+# Strategy: Ignore all data files FIRST, then explicitly allow code
+# The key is: *.png and other data extensions are ignored ABOVE
+# So even if we allow SN+project/**/*, the *.png files inside are still ignored
+# because .gitignore rules are processed top-to-bottom and the last matching rule wins
+# BUT: a file will be ignored if ANY parent directory is ignored
+#
+# So we need to:
+# 1. Ignore data directories completely (MSN-TCSeg_dataset/, etc.)
+# 2. Ignore data file extensions (*.png, *.pt, etc.) everywhere
+# 3. Allow Python files in project directories
+# ===========================
+
+# Allow Python code files in project directories
+!SN+project/**/*.py
+!SN+project/**/*.md
+!SN+project/**/*.ipynb
+!SN+project/**/*.sh
+!SN+project/**/requirements*.txt
+!SN+project/**/*.yml
+!SN+project/**/*.yaml
+
+!new_models_doing/**/*.py
+!new_models_doing/**/*.md
+!new_models_doing/**/*.ipynb
+!new_models_doing/**/*.sh
+!new_models_doing/**/requirements*.txt
+!new_models_doing/**/*.yml
+!new_models_doing/**/*.yaml
+
+!paper_prepare/**/*.py
+!paper_prepare/**/*.md
+!paper_prepare/**/*.ipynb
+!paper_prepare/**/*.sh
+!paper_prepare/**/requirements*.txt
+# paper_prepare data files (json, txt, xlsx are data)
+paper_prepare/**/*.json
+paper_prepare/**/*.txt
+paper_prepare/**/*.xlsx
+paper_prepare/**/*.xls
+paper_prepare/**/*.csv
+
+!Ultrasound_examination/**/*.py
+!Ultrasound_examination/**/*.md
+!Ultrasound_examination/**/*.ipynb
+!Ultrasound_examination/**/*.sh
+!Ultrasound_examination/**/requirements*.txt
+
+!stu_net/**/*.py
+!stu_net/**/*.md
+!stu_net/**/*.sh
+
+# Allow project root folders to be traversed
+!SN+project/
+!new_models_doing/
+!paper_prepare/
+!Ultrasound_examination/
+!stu_net/

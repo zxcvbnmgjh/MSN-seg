@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/x-www-form-urlencoded" -X POST --data 'opr=pwdLogin&userName=24jhgao&pwd=Rdrnysayxg520&rememberPwd=0' http://a.stu.edu.cn/ac_portal/login.php
