@@ -49,7 +49,7 @@ class TestDataset(Dataset):
 def get_test_transform():
     """与训练验证阶段完全一致的预处理"""
     return T.Compose([
-        # T.CenterCrop(CROP_SIZE),
+        T.CenterCrop(CROP_SIZE),
         T.ToTensor(),
         T.Normalize(mean=MEAN, std=STD),
     ])

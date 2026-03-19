@@ -5,7 +5,7 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 import transforms as T
 from src.FusionSegNet import FusionSegNet
-from my_dataset import Midbrain_Test
+from my_dataset import SubstantiaNigra_Full
 import argparse
 from pathlib import Path
 import csv  # needed for evaluate_png_folders
@@ -44,7 +44,7 @@ class TestDataset(Dataset):
 
 def get_test_transform():
     return T.Compose([
-        # T.CenterCrop(CROP_SIZE),
+        T.CenterCrop(CROP_SIZE),
         T.ToTensor(),
         T.Normalize(mean=MEAN, std=STD),
     ])
@@ -320,23 +320,23 @@ def main():
     parser = argparse.ArgumentParser(description="Single model test with full evaluation")
     parser.add_argument("--data-path", type=str,
                         help="Root path of dataset (same as training)",
-                        default="/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation")
+                        default="/data2/gaojiahao/Ultrasound_examination/2_substantia_nigra_Segmentation")
     parser.add_argument("--test-names-file", type=str,
                         help="Path to test_set.txt containing test image filenames",
-                        default="/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/9_fusionsegnet/5fold_save_result/fold_indices/fold_4_test.txt")
+                        default="/data2/gaojiahao/Ultrasound_examination/2_substantia_nigra_Segmentation/9_fusionsegnet/5fold_save_result/fold_indices/fold_4_test.txt")
     parser.add_argument("--weights", type=str,
                         help="Path to SINGLE model checkpoint (.pth)",
-                        default="/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/9_fusionsegnet/save_weights/5fold/fold_4/best_model.pth")
-    parser.add_argument("--device", type=str, default="cuda:0", help="Device")
+                        default="/data2/gaojiahao/Ultrasound_examination/2_substantia_nigra_Segmentation/9_fusionsegnet/save_weights/5fold/fold_4/best_model.pth")
+    parser.add_argument("--device", type=str, default="cuda:1", help="Device")      
     parser.add_argument("--gt-mask-dir", type=str,
                         help="Directory of ground truth masks",
-                        default="/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/0_midbrain_data/Test(512*512)groundtruth/fold4/masks")
+                        default="/data2/gaojiahao/Ultrasound_examination/2_substantia_nigra_Segmentation/0_sn_data/Test(512*512)groundtruth/fold4/masks")
     parser.add_argument("--pred-save-dir", type=str,
                         help="Where to save predicted masks",
-                        default="/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/9_fusionsegnet/predict_results/predicts/iteration5")
+                        default="/data2/gaojiahao/Ultrasound_examination/2_substantia_nigra_Segmentation/9_fusionsegnet/predict_results/predicts/iteration5")
     parser.add_argument("--metrics-output", type=str,
                         help="Metrics report path",
-                        default="/data2/gaojiahao/Ultrasound_examination/1_mid_brain_Segmentation/9_fusionsegnet/predict_results/test_metrics/iteration5")
+                        default="/data2/gaojiahao/Ultrasound_examination/2_substantia_nigra_Segmentation/9_fusionsegnet/predict_results/test_metrics/iteration5")
     parser.add_argument("--spacing", nargs=2, type=float, default=None,
                         help="Pixel spacing (sx sy) for ASSD/HD95 in mm")
     args = parser.parse_args()
@@ -347,7 +347,7 @@ def main():
     print(f"Loaded {len(test_names)} test images from {args.test_names_file}")
 
     # Step 2: Get full image paths via dataset
-    full_dataset = Midbrain_Test(args.data_path, transforms=None)
+    full_dataset = SubstantiaNigra_Full(args.data_path, transforms=None)
     name2path = {Path(p).name: p for p in full_dataset.img_list}
     
     missing = [n for n in test_names if n not in name2path]
