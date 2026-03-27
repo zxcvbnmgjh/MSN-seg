@@ -158,15 +158,15 @@ class SubstantiaNigra_Full(Dataset):
         self.transforms = transforms
         
         # 获取图像文件名（如 "001.png", "002.png" ...）
-        img_names = [i for i in os.listdir(os.path.join(data_root, "images")) if i.endswith(".png")]
+        img_names = [i for i in os.listdir(os.path.join(data_root, "images_512")) if i.endswith(".png")]
         img_names.sort()  # ✅ 强烈建议排序，确保顺序可复现
         
         # 保存文件名列表（关键！供外部打印使用）
         self.img_names = img_names  # <<< 新增：支持 dataset.img_names
         
         # 构建完整路径
-        self.img_list = [os.path.join(data_root, "images", i) for i in img_names]
-        self.mask = [os.path.join(data_root, "masks", i.split("_")[0] + f"_mask.png") for i in img_names]
+        self.img_list = [os.path.join(data_root, "images_512", i) for i in img_names]
+        self.mask = [os.path.join(data_root, "masks_512", i.split("_")[0] + f"_mask.png") for i in img_names]
         
         # 检查 mask 是否存在
         for i in self.mask:

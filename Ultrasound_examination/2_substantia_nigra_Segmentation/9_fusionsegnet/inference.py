@@ -44,7 +44,7 @@ class TestDataset(Dataset):
 
 def get_test_transform():
     return T.Compose([
-        T.CenterCrop(CROP_SIZE),
+        # T.CenterCrop(CROP_SIZE),
         T.ToTensor(),
         T.Normalize(mean=MEAN, std=STD),
     ])
